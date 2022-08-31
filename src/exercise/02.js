@@ -2,18 +2,12 @@
 // http://localhost:3000/isolated/exercise/02.js
 
 import * as React from 'react'
+import {useLocalStorageState} from './useLocalStorageState'
 
-function Greeting({initialName = ''}) {
+function Greeting() {
 
-  const [name, setName] = React.useState(() => window.localStorage.getItem('name') ?? initialName)
+ const {name, handleChange} = useLocalStorageState('name')
 
-  React.useEffect(() => {
-    window.localStorage.setItem('name', name)
-  }, [name])
-
-  function handleChange(event) {
-    setName(event.target.value)
-  }
   return (
     <div>
       <form>
